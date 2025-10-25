@@ -5,16 +5,23 @@ import { Console } from '@woowacourse/mission-utils';
 
 export default class RacingController {
   constructor() {
-    this.cars = [];
     this.inputHandler = new InputHandler();
     this.outputHandler = new OutputHandler();
   }
 
   async run() {
     const carNamesArray = await this.inputHandler.getCarNames();
-    Console.print(carNamesArray);
+    const carInstances = carNamesArray.map(function (carName) {
+      return new Car(carName);
+    });
 
     const tryCount = await this.inputHandler.getTryCount();
-    Console.print(tryCount);
+
+    Array.from({ length: tryCount }).forEach(function () {
+      carInstances.forEach(function (carInstance) {
+        carInstance.move();
+      });
+      Console.print(carInstances);
+    });
   }
 }
