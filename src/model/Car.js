@@ -12,7 +12,9 @@ export default class Car {
     }
   }
 
-  getPosition() {}
+  getPosition() {
+    return '-'.repeat(this.forwardCount);
+  }
 
   generateRandomNumber() {
     return Random.pickNumberInRange(0, 9);

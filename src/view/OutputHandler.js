@@ -1,7 +1,17 @@
 import { Console } from '@woowacourse/mission-utils';
+import Car from '../model/Car.js';
 
 export default class OutputHandler {
-  printResult(cars) {}
+  printStartResult() {
+    Console.print('\n실행 결과');
+  }
+
+  printResult(carInstances) {
+    carInstances.forEach(function (carInstance) {
+      Console.print(carInstance.carName + ' : ' + carInstance.getPosition());
+    });
+    Console.print('\n');
+  }
 
   printWinner(winners) {}
 }

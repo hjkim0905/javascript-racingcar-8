@@ -18,12 +18,16 @@ export default class RacingController {
     });
 
     const tryCount = await this.inputHandler.getTryCount();
-    Array.from({ length: tryCount }).forEach(function () {
-      carInstances.forEach(function (carInstance) {
-        carInstance.move();
-      });
-      Console.print(carInstances);
-    });
+
+    this.outputHandler.printStartResult();
+    Array.from({ length: tryCount }).forEach(
+      function () {
+        carInstances.forEach(function (carInstance) {
+          carInstance.move();
+        });
+        this.outputHandler.printResult(carInstances);
+      }.bind(this),
+    );
 
     const winners = this.winnerFinder.findWinners(carInstances);
     Console.print(winners);
