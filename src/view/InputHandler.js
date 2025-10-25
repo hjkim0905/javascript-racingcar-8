@@ -28,6 +28,11 @@ export default class InputHandler {
   }
 
   async getTryCount() {
-    return await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const tryCount = Number(await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'));
+    this.tryCountValidationHandler.isNumber(tryCount);
+    this.tryCountValidationHandler.isInteger(tryCount);
+    this.tryCountValidationHandler.isPositiveNumber(tryCount);
+
+    return tryCount;
   }
 }

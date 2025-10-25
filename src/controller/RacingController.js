@@ -14,7 +14,7 @@ export default class RacingController {
     const carNamesArray = await this.inputHandler.getCarNames();
     Console.print(carNamesArray);
 
-    const tryCount = parseInt(await this.inputHandler.getTryCount());
+    const tryCount = await this.inputHandler.getTryCount();
     Console.print(tryCount);
   }
 }
