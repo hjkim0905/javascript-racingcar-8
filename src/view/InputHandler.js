@@ -1,12 +1,30 @@
 import { Console } from '@woowacourse/mission-utils';
+import CarNameValidationHandler from '../utils/CarNameValidationHandler.js';
+import TryCountValidationHandler from '../utils/TryCountValidationHandler.js';
 
 export default class InputHandler {
+  constructor() {
+    this.carNameValidationHandler = new CarNameValidationHandler();
+    this.tryCountValidationHandler = new TryCountValidationHandler();
+  }
+
   async getCarNames() {
     const carNamesString = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
+    this.carNameValidationHandler.isEmptyString(carNamesString);
+
     const trimmedCarNamesString = carNamesString.replace(/ /g, '');
-    return trimmedCarNamesString.split(',');
+    const carNamesArray = trimmedCarNamesString.split(',').filter(Boolean);
+
+    carNamesArray.forEach(
+      function (carName) {
+        this.carNameValidationHandler.isExceedingFiveCharacters(carName);
+        this.carNameValidationHandler.isContainingSpecialCharacters(carName);
+      }.bind(this),
+    );
+
+    return carNamesArray;
   }
 
   async getTryCount() {
