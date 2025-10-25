@@ -30,6 +30,6 @@ export default class RacingController {
     );
 
     const winners = this.winnerFinder.findWinners(carInstances);
-    Console.print(winners);
+    this.outputHandler.printWinner(winners);
   }
 }

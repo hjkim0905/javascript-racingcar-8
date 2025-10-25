@@ -13,5 +13,12 @@ export default class OutputHandler {
     Console.print('\n');
   }
 
-  printWinner(winners) {}
+  printWinner(winners) {
+    const winnerNames = winners
+      .map(function (winner) {
+        return winner.carName;
+      })
+      .join(', ');
+    Console.print('최종 우승자 : ' + winnerNames);
+  }
 }
