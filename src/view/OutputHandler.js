@@ -1,5 +1,4 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from '../model/Car.js';
 
 export default class OutputHandler {
   printStartResult() {
