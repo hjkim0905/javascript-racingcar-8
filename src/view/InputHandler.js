@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import CarNameValidationHandler from '../utils/CarNameValidationHandler.js';
 import TryCountValidationHandler from '../utils/TryCountValidationHandler.js';
+import { REGEX } from '../constants/regex.js';
 
 export default class InputHandler {
   constructor() {
@@ -14,7 +15,7 @@ export default class InputHandler {
     );
     this.carNameValidationHandler.isEmptyString(carNamesString);
 
-    const trimmedCarNamesString = carNamesString.replace(/ /g, '');
+    const trimmedCarNamesString = carNamesString.replace(REGEX.SPACE, '');
     const carNamesArray = trimmedCarNamesString.split(',').filter(Boolean);
 
     carNamesArray.forEach(

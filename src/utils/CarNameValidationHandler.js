@@ -1,19 +1,22 @@
+import { ERROR_MESSAGES } from '../constants/error.js';
+import { REGEX } from '../constants/regex.js';
+
 export default class CarNameValidationHandler {
   isEmptyString(carName) {
     if (!carName) {
-      throw new Error('[ERROR] 빈 문자열이 입력되었습니다.');
+      throw new Error(ERROR_MESSAGES.EMPTY_STRING);
     }
   }
 
   isExceedingFiveCharacters(carName) {
     if (carName.length > 5) {
-      throw new Error('[ERROR] 이름이 5자 초과 입력되었습니다.');
+      throw new Error(ERROR_MESSAGES.EXCEEDING_FIVE_CHARACTERS);
     }
   }
 
   isContainingSpecialCharacters(carName) {
-    if (/[^a-zA-Z0-9]/g.test(carName)) {
-      throw new Error('[ERROR] 이름에 알바펫과 숫자 외의 특수문자가 포함되어있습니다.');
+    if (REGEX.NON_ALPHANUMERIC.test(carName)) {
+      throw new Error(ERROR_MESSAGES.CONTAINING_SPECIAL_CHARACTERS);
     }
   }
 }
