@@ -22,14 +22,18 @@ export default class RacingController {
     this.outputHandler.printStartResult();
     Array.from({ length: tryCount }).forEach(
       function () {
-        carInstances.forEach(function (carInstance) {
-          carInstance.move();
-        });
+        this.moveAllCars(carInstances);
         this.outputHandler.printResult(carInstances);
       }.bind(this),
     );
 
     const winners = this.winnerFinder.findWinners(carInstances);
     this.outputHandler.printWinner(winners);
+  }
+
+  moveAllCars(carInstances) {
+    carInstances.forEach(function (carInstance) {
+      carInstance.move();
+    });
   }
 }
