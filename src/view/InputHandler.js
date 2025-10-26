@@ -20,8 +20,7 @@ export default class InputHandler {
 
     carNamesArray.forEach(
       function (carName) {
-        this.carNameValidationHandler.isExceedingFiveCharacters(carName);
-        this.carNameValidationHandler.isContainingSpecialCharacters(carName);
+        this.carNameValidationHandler.carNameValidation(carName);
       }.bind(this),
     );
 
@@ -30,9 +29,7 @@ export default class InputHandler {
 
   async getTryCount() {
     const tryCount = Number(await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'));
-    this.tryCountValidationHandler.isNumber(tryCount);
-    this.tryCountValidationHandler.isInteger(tryCount);
-    this.tryCountValidationHandler.isPositiveNumber(tryCount);
+    this.tryCountValidationHandler.tryCountValidation(tryCount);
 
     return tryCount;
   }

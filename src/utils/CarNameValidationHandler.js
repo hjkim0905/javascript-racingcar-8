@@ -19,4 +19,9 @@ export default class CarNameValidationHandler {
       throw new Error(ERROR_MESSAGES.CONTAINING_SPECIAL_CHARACTERS);
     }
   }
+
+  carNameValidation(carName) {
+    this.isExceedingFiveCharacters(carName);
+    this.isContainingSpecialCharacters(carName);
+  }
 }

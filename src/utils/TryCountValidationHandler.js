@@ -18,4 +18,10 @@ export default class TryCountValidationHandler {
       throw new Error(ERROR_MESSAGES.NOT_POSITIVE_NUMBER);
     }
   }
+
+  tryCountValidation(tryCount) {
+    this.isNumber(tryCount);
+    this.isInteger(tryCount);
+    this.isPositiveNumber(tryCount);
+  }
 }
